@@ -33,10 +33,7 @@ class FeedStoreChallengeTests: XCTestCase, FeedStoreSpecs {
 	
 	func test_retrieve_deliversFoundValuesOnNonEmptyCache() throws {
 		let sut = try makeSUT()
-		let feed = uniqueImageFeed()
 		
-		insert((feed: feed, timestamp: Date()), to: sut)
-
 		assertThatRetrieveDeliversFoundValuesOnNonEmptyCache(on: sut)
 	}
 	
