@@ -41,11 +41,14 @@ public final class InMemoryFeedStore: FeedStore {
 	
 	public func deleteCachedFeed(completion: @escaping DeletionCompletion) {}
 	
-	public func insert(_ feed: [LocalFeedImage], timestamp: Date, completion: @escaping InsertionCompletion) {}
+	public func insert(_ feed: [LocalFeedImage], timestamp: Date, completion: @escaping InsertionCompletion) {
+		cache = Cache(feed: feed, timestamp: timestamp)
+		completion(nil)
+	}
 	
 	public func retrieve(completion: @escaping RetrievalCompletion) {
-		if let _ = cache {
-			
+		if let cache = cache {
+			completion(.found(feed: cache.feed, timestamp: cache.timestamp))
 		} else {
 			completion(.empty)
 		}
