@@ -40,6 +40,7 @@ public final class InMemoryFeedStore: FeedStore {
 	public init() {}
 	
 	public func deleteCachedFeed(completion: @escaping DeletionCompletion) {
+		cache = nil
 		completion(nil)
 	}
 	
